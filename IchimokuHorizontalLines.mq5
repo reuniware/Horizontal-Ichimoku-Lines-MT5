@@ -32,7 +32,10 @@ void OnTick()
 
   }
 //+------------------------------------------------------------------+
-
+int minNumberOfSameConsecutiveValuesNeeded=5;
+//+------------------------------------------------------------------+
+//|                                                                  |
+//+------------------------------------------------------------------+
 void IchimokuHorizontalLines()
   {
    long cid=ChartID();
@@ -74,7 +77,6 @@ void IchimokuHorizontalLines()
    nbssb = CopyBuffer(handleIchimoku, SENKOUSPANB_LINE, 0, max, senkou_span_b_buffer);
    nbc=CopyBuffer(handleIchimoku,CHIKOUSPAN_LINE,0,max,chikou_span_buffer);
 
-   int minNumberOfSameConsecutiveValuesNeeded = 10;
    for(int i=0;i<nbk-minNumberOfSameConsecutiveValuesNeeded;i+=minNumberOfSameConsecutiveValuesNeeded)
      {
       bool equal=true;
