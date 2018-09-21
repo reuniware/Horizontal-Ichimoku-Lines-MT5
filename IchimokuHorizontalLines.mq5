@@ -71,10 +71,10 @@ void IchimokuHorizontalLines()
    nbssb = CopyBuffer(handleIchimoku, SENKOUSPANB_LINE, 0, max, senkou_span_b_buffer);
    nbc=CopyBuffer(handleIchimoku,CHIKOUSPAN_LINE,0,max,chikou_span_buffer);
 
-   for(int i=0;i<max-10;i+=10)
+   for(int i=0;i<max-10;i+=10) // 10 = minimum number of consecutive same values for considering a flat line (you can adjust it)
      {
       bool equal=true;
-      for(int j=0;j<9;j++)
+      for(int j=0;j<9;j++) // 9 is (10-1)
         {
          if(kijun_sen_buffer[i+j]!=kijun_sen_buffer[i+j+1])
            {
