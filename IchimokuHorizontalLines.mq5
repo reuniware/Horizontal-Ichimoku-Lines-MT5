@@ -35,6 +35,9 @@ void OnTick()
 
 void IchimokuHorizontalLines()
   {
+   long cid=ChartID();
+   ObjectsDeleteAll(cid);
+
    double tenkan_sen_buffer[];
    double kijun_sen_buffer[];
    double senkou_span_a_buffer[];
@@ -71,10 +74,10 @@ void IchimokuHorizontalLines()
    nbssb = CopyBuffer(handleIchimoku, SENKOUSPANB_LINE, 0, max, senkou_span_b_buffer);
    nbc=CopyBuffer(handleIchimoku,CHIKOUSPAN_LINE,0,max,chikou_span_buffer);
 
-   for(int i=0;i<max-10;i+=10) // 10 = minimum number of consecutive same values for considering a flat line (you can adjust it)
+   for(int i=0;i<max-10;i+=10)
      {
       bool equal=true;
-      for(int j=0;j<9;j++) // 9 is (10-1)
+      for(int j=0;j<9;j++)
         {
          if(kijun_sen_buffer[i+j]!=kijun_sen_buffer[i+j+1])
            {
@@ -84,7 +87,11 @@ void IchimokuHorizontalLines()
         }
       if(equal==true)
         {
-         printf("one horizontal line found at " + tm[i] + " with kijun sen line = " + DoubleToString(kijun_sen_buffer[i]));
+         printf("one horizontal line found at "+tm[i]+" with kijun sen line = "+DoubleToString(kijun_sen_buffer[i]));
+         if(!ObjectCreate(cid,"test"+i,OBJ_HLINE,0,0,kijun_sen_buffer[i]) || GetLastError()!=0)
+            Print("Error creating object: ",GetLastError());
+         else
+            ChartRedraw(cid);
         }
      }
 
