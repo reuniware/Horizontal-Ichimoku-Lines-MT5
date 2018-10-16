@@ -173,7 +173,12 @@ void IchimokuHorizontalLines()
             Print("Error creating object: ",GetLastError());
          else
            {
-            ObjectSetInteger(0,"ssb"+i,OBJPROP_COLOR,clrAntiqueWhite);
+            ObjectSetInteger(0,"ssb"+i,OBJPROP_COLOR,clrTomato);
+            ObjectSetInteger(0,"ssb"+i,OBJPROP_STYLE,STYLE_DOT); 
+            //ObjectSetInteger(0,"ssb"+i,OBJPROP_WIDTH,1); 
+
+            //PlotIndexSetInteger(0,PLOT_LINE_STYLE,STYLE_DOT); 
+
             ChartRedraw(cid);
            }
         }
